@@ -1,0 +1,135 @@
+ {% extends 'myapp/base.html' %}
+{% block title %}
+    <title>个人中心</title>
+
+{% endblock %}
+{% block content %}
+    <style>
+        table{
+            border: 1px solid #cad9ea;
+        }
+        tr td img {
+             vertical-align: middle;
+        }
+        p{
+            font-size: 20px;
+            color:#8B8682;
+            font-family: Consolas;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .div1{
+            float:left;
+            width:120px;
+            margin-left: 20px;
+
+        }
+        .div2{
+            float:left;
+            margin-left: 20px;
+            width:120px;
+        }
+        .rig{
+            width:330px;
+            height:30px;
+            position: absolute;
+            top:100px;
+            right:0px;
+        }
+       .div1 a{
+           text-decoration:none;
+           font-size: 20px;
+           color: #666666;
+
+
+       }
+       .div2 a{
+           text-decoration: none;
+           font-size: 20px;
+           color: #666666;
+
+       }
+        .div1 li{
+           list-style-type: none;
+           background: url(../../static/images/11.png) no-repeat 0rem 0.2rem;
+           background-size: 1.2rem 1.2rem;
+           text-indent: 1.7em;
+
+       }
+        .div2 li {
+            list-style-type: none;
+            background: url(../../static/images/12.png) no-repeat 0rem 0.2rem;
+            background-size: 1.2rem 1.2rem;
+            text-indent: 1.7em;
+        }
+        a{
+            text-decoration: none;
+            color: #666666;
+        }
+        .left{
+             width:200px;
+             position: absolute;
+             top:100px;
+             margin-left:0px;
+        }
+        .ulli{
+            margin-top:120px;
+            font-size: 25px;
+        }
+         .str{
+
+        text-align: left;
+        font-size: 28px;
+        list-style-type: none;
+        background: url(../../static/images/09.png) no-repeat 0rem 0.3rem;
+        background-size: 1.8rem 1.8rem;
+        text-indent:1.2em;
+        color: #666666;
+        margin-top:0px;
+
+    }
+         .li01 {
+        list-style-type: none;
+        background: url(../../static/images/15.png) no-repeat 0rem 0.2rem;
+        background-size: 1.8rem 1.8rem;
+        text-indent: 2em;
+   }
+   .li02 {
+        list-style-type: none;
+        background: url(../../static/images/16.png) no-repeat 0rem 0.2rem;
+        background-size: 1.8rem 1.8rem;
+        text-indent: 2em;
+   }
+
+    </style>
+     <div class="left">
+         <marquee><p>{{ name }},欢迎您的登录!</p><img src="../../static/images/笑脸.png" height="35px" width="35px" /></marquee>
+     </div>
+     <ul class="ulli">
+         <li class="li01"> <a href="{% url 'edit_person' name %}"> 个人基本信息</a></li><br/>
+         <li class="li02"> <a href="{% url 'show_join' name %}}">我的自习记录</a></li>
+     </ul>
+     <div class="rig">
+        <div class="div1" ><li><a href="{% url 'dologout' %}">退出登录</a></div>
+<!--        <div class="div2" ><li><a href="{% url 'delet' name %}">删除账户</a></div>-->
+      </div>                                                                                                                                                                       </div>
+    <br/><br/>
+
+      <div style="  background-color: aliceblue; border-radius:15px; width: 680px; height: 260px;float: left;margin-left: 100px;margin-top:20px;box-shadow: 7px 7px 17px rgba(52, 56, 66, 0.8);" >
+         <p class="str">通知</p>
+      <div style="margin-top: 40px; font-size: 40px">
+      <marquee scrolldelay="110">
+      {% for port in message %}
+         {{ port.message_time }} ：{{ port.message_content }} <br>
+      {% endfor %}
+      </marquee>
+      </div>
+        </div>
+{#    <div style=" background-color: aliceblue; border-radius:15px;width: 680px; height: 260px;float:left;margin-left: 100px;margin-top:20px;box-shadow: 7px 7px 17px rgba(52, 56, 66, 0.8);">#}
+{#        <p class="str">通知</p>#}
+{#    <marquee>我是默认的滚动方向!</marquee>#}
+{#    </div>#}
+
+
+
+{% endblock %}

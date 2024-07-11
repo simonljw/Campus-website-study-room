@@ -1,0 +1,98 @@
+ {% extends 'myapp/base.html' %}
+{% block title %}
+<title>我的自习</title>
+    <script>
+        function upcolor(){
+            var table=document.getElementById("mytable");
+            for(var i=0;i<table.rows.length;i++){
+                if(i%2!=0){//判断的为偶数行，从第2行开始起，偶数行设定那个颜色是蓝色
+                    table.rows[i].style.background='#F0FFFF';
+                    }
+                }
+            for(var j=2;j<table.rows.length;j++){
+                if(j%2==0){//判断的为偶数行，偶数行设定那个颜色是蓝色(从第三行开始)
+                table.rows[j].setAttribute('style','background-color:#cornsilk');
+                    }
+                }
+            }
+	</script>
+
+    <style type="text/css">
+        table
+        {
+            width:700px;
+            border-collapse: collapse;
+            margin: 0 auto;
+            text-align: center;
+        }
+        table td, table th
+        {
+            border: 1px solid #cad9ea;
+            color: #666;
+            height: 30px;
+        }
+		.a {
+			font-family: "microsoft sans serif";
+		}
+        a{
+            text-decoration: none;
+            color: cornflowerblue;
+        }
+    </style>
+
+{% endblock %}
+
+{% block content %}
+ <br/><br/>
+<center>
+
+    <h1 class="a">我的自习</h1>
+    <body onLoad="upcolor()">
+        <table border="1" id="mytable">
+            <thead>
+            <tr bgcolor="#b0c4de" >
+                <td>自习名称</td>
+                <td>自习号</td>
+                <td>发起人</td>
+                <td>开始时间</td>
+                <td>结束时间</td>
+                <td>操作</td>
+                <td>打卡签到</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for port in ulist %}
+            <tr >
+            <td>{{ port.meet_name }}</td>
+            <td>{{ port.room_id }}</td>
+            <td>{{ port.president }}</td>
+            <td>{{ port.start_time }}</td>
+            <td>{{ port.end_time }}</td>
+
+            {% if port.president == name %}
+                <td><a href="{% url 'manage' port.id name %}"><button>管理</button></a></td>
+                <td><a href="{% url 'sign_carding' port.id name %}"><button>结束自习</button></a></td>
+            {% else %}
+            <td><a href="{% url 'cancel_meet' port.id name pIndex %}"><button>取消自习</button></a></td>
+            <td><a href="{% url 'sign_carding' port.id name %}"><button>打卡</button></a></td>
+            <{% endif %}
+
+            </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </body>
+    <br/><br/>
+
+<a href="{% url 'mymeetings' pIndex|add:-1 name %}">上一页</a>&nbsp;&nbsp;&nbsp;
+{% for p in page_list %}
+    {% if p == pIndex %}
+        <a href="{% url 'mymeetings' p name %}" style="color :#ff0000">{{ p }}</a>&nbsp;&nbsp;
+    {% else %}
+        <a href="{% url 'mymeetings' p name %}">{{ p }}</a>&nbsp;&nbsp;
+    {% endif %}
+{% endfor %}
+<a href="{% url 'mymeetings' pIndex|add:1 name %}">下一页</a>
+</center>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}
+    <title>线下自习管理</title>
+{% endblock %}
+
+{% block content %}
+    <center>
+     <script>
+        function alertTip(){
+            alert('确认要取消自习吗？');
+        }
+        function changenum()
+        {
+            var num=prompt("请输入人数","{{ participant }}"); // 弹出input框
+            alert('人数修改成功！');
+        }
+        function alerttime(){
+            alert('自习时间修改成功！');
+        }
+        function changetype(){
+             var num=prompt("请输入人数","{{ meetingtype }}"); // 弹出input框
+             alert('自习类型修改成功！');
+        }
+         function changeroom()
+        {
+            var num=prompt("请重新输入自习室","{{ meetingroom }}"); // 弹出input框
+            alert('自习室修改成功！');
+        }
+    </script>
+    <form action="{% url 'edit_offline' 1 %}" method="post">
+        {% csrf_token %}
+        <table border="1">
+          <thead><h3>线下自习管理</h3></thead>
+          <tbody>
+              <tr><td>序号:<input type="text" value={{ id }} ></td></tr>
+              <tr><td>发起人:<input type="text" value={{ president }}></td></tr>
+              <tr><td>自习名称:<input type="text" value={{ meetingname }} ></td></tr>
+              <tr><td>修改开始时间:<input type="datetime-local"   onclick="alerttime()" value={{ starttime }}></td></tr>
+              <tr><td>修改结束时间:<input type="datetime-local"   onclick="alerttime()" value={{ endtime }}></td></tr>
+              <tr><a>{{ start_time }}</a></tr>
+              <tr><td><input type="button"  value="修改自习室"  onclick="changeroom()"/></td></tr>
+              <tr><td><input type="button"  value="修改人数" onclick="changenum()"></td></tr>
+              <tr><td><input type="button"  value="修改自习类型" onclick="changetype()"></td></tr>
+             <tr><td><a href=""><button  onclick="alertTip()">取消自习</button></a></td></tr>
+              <tr><td> <center><a href="{% url 'createmeeting' %}">返回</a></center></td></tr>
+          </tbody>
+        </table>
+    </form>
+
+
+    </center>
+
+{% endblock %}

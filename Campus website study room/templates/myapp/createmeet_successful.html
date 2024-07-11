@@ -1,0 +1,20 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}
+<title>温馨提示</title>
+{% endblock %}
+<center>
+
+</center>
+
+{% block content %}
+    <body>
+    <center>
+    </br></br></br></br></br></br>
+    <ul>
+        <a>您已成功申请自习室！记得按时参加</a>
+        <a href="{% url 'index' 1 name %}">前往查看</a>
+    </ul>
+    </center>
+    </body>
+{% endblock %}

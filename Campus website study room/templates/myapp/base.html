@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+      <title>我的自习</title>
+    {% endblock %}
+<style>
+
+        body{
+          background-image: url(../../static/images/05.jpg);
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+          width:100%;
+          height:820px;
+          top:0px;
+          -moz-background-size: 100% 100%;
+      }
+        #ulx {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+            background-color: rgba(255,255,255,0);
+
+        }
+        #lix {
+          float: left;
+        }
+        #lix a {
+          display: block;
+            font-size:20px;
+          color: white;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+        }
+        #lix a:hover:not(.active) {
+            background-color: #111;
+        }
+    </style>
+
+
+</head>
+<body>
+     <ul id="ulx">
+          <li id="lix"><a class="act" href="{% url 'index' 1 name %}">自习列表</a></li>
+          <li id="lix"><a href="{% url 'mymeetings' 1 name %}">我的自习</a></li>
+          <li id="lix"><a href="{% url 'createmeeting' name %}" >申请自习室</a></li>
+{#          <li id="lix"><a href="{% url 'meetingroom' 1 name %}" >我的自习室</a></li>#}
+          <li id="lix"><a href="{% url 'top_personalcentre' 1 name %}" >个人中心</a></li>
+    </ul>
+
+
+{#<center>#}
+{#    <a href="{% url 'index' 1 name %}" style="margin-right: 250px"><button style="width: 100px;height: 50px">自习列表</button></a>#}
+{#   <a href="{% url 'mymeetings' 1 name %}"style="margin-right: 250px"> <button style="width: 100px;height: 50px">我的自习</button></a>#}
+{#   <a href="{% url 'createmeeting' name %}"style="margin-right: 250px"> <button style="width: 100px;height: 50px">申请自习室</button></a>#}
+{#   <a href="{% url 'top_personalcentre' 1 name %}"> <button style="width: 100px;height: 50px"> 个人中心</button></a>#}
+{#</center>#}
+
+</body>
+{% block content %}
+
+{% endblock %}
+</html>

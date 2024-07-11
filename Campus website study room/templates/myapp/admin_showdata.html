@@ -1,0 +1,159 @@
+{% extends 'myapp/admin_base.html' %}
+{% load static %}
+
+{% block title %}
+<title>自习信息浏览</title>
+    <style type="text/css">
+        table {
+            border-collapse: collapse;
+            margin: 0 auto;
+            text-align: center;
+        }
+       table td, table th
+        {
+            width: 120px;
+            border: 1px solid #cad9ea;
+            color: #666;
+            height: 35px;
+        }
+        table thead th
+        {
+            background-color: #CCE8EB;
+            width: 100px;
+        }
+        table tr:nth-child(odd)
+        {
+            background: #fff;
+        }
+        table tr:nth-child(even)
+        {
+            background: #F5FAFA;
+        }
+    .a {
+        font-family: "microsoft sans serif", serif;
+    }
+                input{
+                width: 300px;
+                height: 40px;
+                border: 1px solid #ccc;
+                padding: 7px 0;
+                border-radius: 3px;
+                padding-left:5px;
+                -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+                box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+                -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+                -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+                transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
+            }
+            input:focus{
+                    border-color: #66afe9;
+                    outline: 0;
+                    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+                    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
+            }
+</style>
+{% endblock %}
+
+{% block content %}
+    {{ info }}
+    <body style="background-image: url('{% static "images/首页.png" %}');background-size:100%;background-repeat: no-repeat;">
+<center>
+
+<br/>
+<form action="{% url 'admin_findpage' 1 %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="find1" placeholder="请输入自习名称"/>&nbsp;&nbsp;
+    <input type="submit" name="find" value="查询自习信息"
+           style="
+    width: 150px; /* 宽度 */
+	height: 40px; /* 高度 */
+	border-width: 0; /* 边框宽度 */
+	border-radius: 3px; /* 边框半径 */
+	background: #1E90FF; /* 背景颜色 */
+	cursor: pointer; /* 鼠标移入按钮范围时出现手势 */
+	outline: none; /* 不显示轮廓线 */
+	color: white; /* 字体颜色 */
+	font-size: 17px; /* 字体大小 */"/>
+</form>
+<br>
+<ul>
+    <li style="text-align:center;line-height: 50px;"><a href="{%url 'admin_adddata' %}" style="display:block;width:118px;height:50px;text-decoration:none;background-color: darkmagenta;color:white;">添加自习信息</a></li>
+</ul>
+<table border="1">
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>自习室名称</td>
+        <td>剩余人数</td>
+        <td>自习状态</td>
+        <td>自习名</td>
+        <td>操作</td>
+        <td>发起人</td>
+        <td>自习开始时间</td>
+        <td>自习结束时间</td>
+        <td>预约自习人的名字</td>
+        <td>自习种类</td>
+        <td colspan="2">更改</td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for port in conferences %}
+    <tr>
+        <td>{{ port.id }}</td>
+        <td>{{ port.room_id }}</td>
+        <td>{{ port.allow_num }}</td>
+        <td>{{ port.statu }}</td>
+        <td>{{ port.meet_name }}</td>
+        <td>{{ port.operation }}</td>
+        <td>{{ port.president }}</td>
+        <td>{{ port.start_time }}</td>
+        <td>{{ port.end_time }}</td>
+        <td>{{ port.sub_name }}</td>
+        <td>{{ port.meet_kind }}</td>
+        <td><a href="{% url 'admin_edit' port.id %}" style="text-decoration:none;background-color: purple;color:white;display:block;width:120px;height:50px;text-align:center;line-height: 50px;">编辑</a></td>
+        <td><a href="{% url 'admin_delet' port.id %}" onclick="return confirm('确定要删除嘛？')" style="text-decoration:none;background-color: purple;color:white;display:block;width:120px;height:50px;text-align:center;line-height: 50px;">删除</a></td>
+
+    </tr>
+
+    {% endfor %}
+
+    </tbody>
+</table>
+
+<br/>
+<a href="{% url 'admin_showdata' pIndex|add:-1 %}"
+    style="
+    text-decoration:none;
+    width: 150px; /* 宽度 */
+	height: 40px; /* 高度 */
+	border-width: 0; /* 边框宽度 */
+	border-radius: 3px; /* 边框半径 */
+	background: purple; /* 背景颜色 */
+	cursor: pointer; /* 鼠标移入按钮范围时出现手势 */
+	outline: none; /* 不显示轮廓线 */
+	color: white; /* 字体颜色 */
+	font-size: 17px; /* 字体大小 */">上一页</a>&nbsp;&nbsp;&nbsp;
+
+{% for p in page_list %}
+    {% if p == pIndex %}
+        <a href="{% url 'admin_showdata' p %}" style="color: #ff0000">{{ p }}</a>&nbsp;&nbsp;
+    {% else %}
+        <a href="{% url 'admin_showdata' p %}">{{ p }}</a>&nbsp;&nbsp;
+    {% endif %}
+{% endfor %}
+
+<a href="{% url 'admin_showdata' pIndex|add:1 %}"
+    style="
+    text-decoration:none;
+    width: 150px; /* 宽度 */
+	height: 40px; /* 高度 */
+	border-width: 0; /* 边框宽度 */
+	border-radius: 3px; /* 边框半径 */
+	background: purple; /* 背景颜色 */
+	cursor: pointer; /* 鼠标移入按钮范围时出现手势 */
+	outline: none; /* 不显示轮廓线 */
+	color: white; /* 字体颜色 */
+	font-size: 17px; /* 字体大小 */">下一页</a>
+</center>
+    </body>
+{% endblock %}

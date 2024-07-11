@@ -1,0 +1,74 @@
+{% extends 'myapp/base.html' %}
+{% block title %}
+<title>首页</title>
+{% endblock %}
+{% block content %}
+     <style>
+         table{
+             width:400px;
+         }
+
+         .but{
+              border-color: cornsilk;
+                background-color: rgba(100, 149, 237, .7);
+                color: aliceblue;
+                border-style: hidden;
+                border-radius: 5px;
+                width: 100px;
+                height: 31px;
+                font-size: 16px;
+         }
+     </style>
+{#    <a href="unonlion.html">返回线下自习室列表</a></br></br>#}
+    <center>
+        <br/><br/><br/><br/>
+    <form action="{% url 'info' room_sub.id name %}" method="post">
+        {% csrf_token %}
+        <table border="1">
+            <tr>
+                <td>
+                    自习主题:
+                </td>
+                <td>
+                    <a>{{ room_sub.meet_name }}</a>
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    发起人:
+                </td>
+                <td>
+                    <a>{{ room_sub.president }}</a>
+                </td>
+           </tr>
+             <tr>
+                <td>
+                    预约开始时间:
+                </td><td>
+                      {{ room_sub.start_time }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    预约结束时间:
+                </td><td>
+                    {{ room_sub.end_time }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    预约人:
+                </td><td>
+                     {{ name }}
+                </td>
+            </tr>
+        </table><br>
+
+    <input type="submit" value="提交预约" class="but"/>&nbsp;
+
+    </form>
+
+    </center>
+
+
+{% endblock %}

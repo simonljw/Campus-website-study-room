@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>参加过的自习</title>
+</head>
+<body>
+<center>
+    <table border="1">
+        <thead>
+        <tr>
+            <td>序号</td>
+            <td>自习室</td>
+            <td>自习名称</td>
+            <td>打卡时间</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for card in cards %}
+            <tr>
+
+                    <td>{{ card.id }}</td>
+                    <td>{{ card.room_id}}</td>
+                    <td>{{ card.meet_name }}</td>
+                    <td>{{ card.card_time }}</td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+        </table>
+</center>
+</body>
+</html>

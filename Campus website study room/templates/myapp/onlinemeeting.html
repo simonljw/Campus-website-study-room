@@ -1,0 +1,86 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}
+    <title>创建线上自习</title>
+{% endblock %}
+
+{% block content %}
+    <body>
+      <center>
+          <h2>线上自习</h2>
+           <form>
+                <script>
+                    function alertTip(){
+                        alert('您已成功申请自习室');
+                    }
+                </script>
+           </form>
+          <form action="{% url 'create' name %}" method="post">
+              {% csrf_token %}
+              <table border="1">
+                  <tr>
+                     <td>
+                        自习号：
+                    </td>
+                    <td>
+                        <input type="text" name="idm" placeholder="自习号"/>
+                    </td>
+                </tr>
+                  <tr>
+                    <td>自习名称：</td>
+                    <td>
+                        <input type="text" name="meet_name" placeholder="自习名称"/>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>自习发起人：</td>
+                    <td>
+                        <input type="text" name="president" placeholder="自习发起人"/>
+                    </td>
+                   </tr>
+                   <tr>
+                     <td>
+                        自习类型：
+                    </td>
+                    <td>
+                        <select name="meet_kind">
+                          <option>艺术类</option>
+                          <option>实践类</option>
+                          <option>理科类</option>
+                          <option>文科类</option>
+                        </select>
+                    </td>
+                </tr>
+                   <tr>
+                    <td>自习开始时间：</td>
+                    <td>
+                        <input type="datetime-local" name="start_time" placeholder="自习开始时间"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>自习结束时间：</td>
+                    <td>
+                        <input type="datetime-local" name="end_time" placeholder="自习结束时间"/>
+                    </td>
+                </tr>
+                   <tr>
+                    <td>自习人数：</td>
+                    <td>
+                        <input type="text" name="allow_num" placeholder="自习人数"/>
+                    </td>
+                 </tr>
+             <table/>
+
+              <br/>
+                <input type="submit" value="创建" onclick="alertTip()"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="reset" value="重置"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="{% url 'createmeeting' name %}">返回</a>
+          </form>
+
+
+      </center>
+    </body>
+
+{% endblock %}
+

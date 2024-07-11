@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>打卡</title>
+</head>
+<body>
+<center>
+{{ card_time }}
+{{ info }}
+{#    //返回我的自习，做删除 url 'delet'#}
+<a href="{% url 'mymeetings' 1 name %}">返回</a>
+</center>
+</body>
+</html>

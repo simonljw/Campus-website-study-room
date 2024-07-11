@@ -1,0 +1,121 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}
+    <title>申请自习室</title>
+{% endblock %}
+
+{% block content %}
+<style>
+     .button {
+            border-color: cornsilk;
+            background-color: rgba(100, 149, 237, .7);
+            color: aliceblue;
+            border-style: hidden;
+            border-radius: 5px;
+            width: 100px;
+            height: 31px;
+            font-size: 16px;
+     }
+     table{
+         width:500px;
+     }
+     tr{
+         height:40px;
+     }
+    a{
+        text-decoration: none;
+        color: #000000;
+    }
+
+</style>
+    <center>
+<!--{#        <h2>申请自习室</h2>#}-->
+<!--{#        <form>#}-->
+<!--{#            <script>#}-->
+<!--{#                function alertTip(){#}-->
+<!--{#                    alert('您已成功申请自习室');#}-->
+<!--{#                }#}-->
+<!--{#            </script>#}-->
+<!--{#        </form>#}-->
+        <br/><br/><br/><br/>
+        <h1>申请自习室</h1>
+        <form action="{% url 'insert' name %}" method="post">
+            {% csrf_token %}
+
+            <table border="1">
+                <tr>
+                     <td>
+                        自习室：
+                    </td>
+                    <td>
+{#                        <input type="text" name="room_id" placeholder="【点击】选择自习室"/>#}
+                        <a href="{% url 'meetingroom' name %}">【点击】选择自习室</a>
+                        <input type="text" name="room_id" value="{{ room.room_id }}"/>
+                    </td>
+                </tr>
+                <tr>
+                     <td>
+                         自习名称：
+                    </td>
+                    <td>
+                        <input type="text" name="meet_name" placeholder="自习名称"/>
+                    </td>
+                </tr>
+                <tr>
+                     <td>
+                        自习类型：
+                    </td>
+                    <td>
+                         <select name="meet_kind">
+                          <option>艺术类</option>
+                          <option>实践类</option>
+                          <option>理科类</option>
+                          <option>文科类</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                     <td>
+                        自习发起人：
+                    </td>
+                    <td>
+                        <input type="text" name="president" placeholder="自习发起人"/>
+                    </td>
+                </tr>
+                <tr>
+                     <td>
+                        自习开始时间：
+                    </td>
+                    <td>
+                        <input type="datetime-local"  name="start_time" placeholder="自习开始时间"/>
+                    </td>
+                </tr>
+                <tr>
+                     <td>
+                        自习结束时间：
+                    </td>
+                    <td>
+                        <input type="datetime-local"  name="end_time" placeholder="自习结束时间"/>
+                    </td>
+                </tr>
+                <tr>
+                     <td>
+                         自习参加人数：
+                    </td>
+                    <td>
+                        <input type="text" name="allow_num" placeholder="自习参加人数"/>
+                    </td>
+                </tr>
+              </table>
+                <br/>
+                <div  style="text-align: center;margin-top: 30px;">
+                    <input type="submit" value="创建" class="button" onclick="alertTip()"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="reset" class="button" value="重置"/>&nbsp;&nbsp;&nbsp;
+                </div>
+                 &nbsp;&nbsp;
+                       </form>
+    </center>
+
+
+{% endblock %}

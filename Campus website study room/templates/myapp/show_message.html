@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>信息展示</title>
+</head>
+<body>
+<center>
+<table border="1">
+    <thead>
+    <tr>
+        <td>序号</td>
+        <td>发布时间</td>
+        <td>消息内容</td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for port in show_message %}
+        <tr>
+        <td>{{ port.id }}</td>
+        <td>{{ port.message_time }}</td>
+        <td>{{ port.message_content }}</td>
+        <td><a href="{% url 'message_edit' port.id %}">编辑</a> </td>
+        <td><a href="{% url 'message_delete' port.id %}">删除</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</center>
+</body>
+</html>

@@ -1,0 +1,51 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}
+    <title>线下自习列表</title>
+{% endblock %}
+
+{% block content %}
+    <center>
+    <h1>线下自习列表</h1>
+    <thead>
+        <table border="1">
+            <tr>
+                <td>自习室序号</td>
+                <td>自习室名</td>
+                <td>开放时间</td>
+                <td>自习室容纳人数</td>
+                <td>自习室状态</td>
+                <td>自习主题</td>
+                <td>操作</td>
+            </tr>
+
+    </thead>
+    <tbody>
+       {% for room in rooms %}
+       <tr>
+          <td>{{ room.id }}</td>
+          <td>{{ room.room_id }}</td>
+          <td>{{ room.open_time }}</td>
+          <td>{{ room.allow_num }}</td>
+          {% if room.statu %}
+            <td>空闲</td>
+            {% else %}
+              <td>正在使用中</td>
+          {% endif %}
+
+          <td>{{ room.meet_name }}</td>
+           {% if room.statu %}
+              <td><a>已满</a></td>
+            {% else %}
+               <td><a href="{% url 'operation' room.id name %}">预约</a></td>
+           {% endif  %}
+
+
+       </tr>
+       {% endfor %}
+
+    </tbody>
+    </table>
+
+    </center>
+{% endblock %}

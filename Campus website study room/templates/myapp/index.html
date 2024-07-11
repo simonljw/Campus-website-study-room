@@ -1,0 +1,77 @@
+ {% extends 'myapp/base.html' %}
+
+{% block title %}
+    <title>自习列表</title>
+{% endblock %}
+
+{% block content %}
+     <script>
+        function upcolor(){
+            var table=document.getElementById("mytable");
+            for(var i=0;i<table.rows.length;i++){
+                if(i%2!=0){//判断的为偶数行，从第2行开始起，偶数行设定那个颜色是蓝色
+                    table.rows[i].style.background='#F0FFFF';
+                    }
+                }
+            for(var j=2;j<table.rows.length;j++){
+                if(j%2==0){//判断的为偶数行，偶数行设定那个颜色是蓝色(从第三行开始)
+                table.rows[j].setAttribute('style','background-color:white');
+                    }
+                }
+            }
+	</script>
+    <style>
+        table{
+            width:1000px;
+        }
+        a{
+            text-decoration: none;
+        }
+
+    </style>
+    <br/><br/>
+    <center>
+    <h1>自习列表</h1>
+    <body onLoad="upcolor()">
+     <table border="1" id="mytable">
+        <thead>
+            <tr bgcolor="#b0c4de">
+                <td>自习主题</td>
+                <td>发起人</td>
+                <td>自习室名</td>
+                <td>开始时间</td>
+                <td>结束时间</td>
+                <td>剩余人数</td>
+                <td>自习状态</td>
+                <td>操作</td>
+            </tr>
+
+        </thead>
+        <tbody>
+           {% for  h in meeting_list %}
+           <tr>
+              <td>{{ h.meet_name }}</td>
+              <td>{{ h.president }}</td>
+              <td>{{ h.room_id }}</td>
+              <td>{{ h.start_time }}</td>
+              <td>{{ h.end_time }}</td>
+              <td>{{ h.allow_num }}</td>
+              {% if h.statu %}
+                <td>正在进行中</td>
+              {% else %}
+                  <td>未开始</td>
+              {% endif %}
+    {#          {% if room.room_statu %}#}
+    {#              <td><a>已满</a></td>#}
+    {#           {% else %}#}
+              <td><a href="{% url 'operation' h.id name %}">预约</a></td>
+    {#          {% endif  %}#}
+           </tr>
+           {% endfor %}
+        </tbody>
+    </table>
+
+    </body>
+
+    </center>
+{% endblock %}

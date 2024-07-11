@@ -1,0 +1,19 @@
+
+<head>
+    <meta charset="UTF-8">
+    <title>发布信息</title>
+</head>
+<body>
+<form action="{% url 'message_insert' %}" method="post">
+    <table border="1">
+        <tr>
+            <td>消息内容:
+            <input type="text" name="message_content" />
+            </td>
+        </tr>
+        <tr>
+            <input type="submit" value="发布信息" />
+        </tr>
+    </table>
+</form>
+</body>

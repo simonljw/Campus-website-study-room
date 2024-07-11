@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>页面</title>
+</head>
+<body>
+<center>
+    <form action="{% url 'sign_carding' "小明" %}" method="post">{# name=小明 #}
+        {% csrf_token %}
+        <center>
+            <table border="1">
+                <tr>
+                    <td>自习室</td>
+                    <td><input type="text" name="room_id" value="农牧102"></td>
+                    <td>自习名称</td>
+                    <td><input type="text" name="meet_name" value="中国峰会"></td>
+                    <td><input type="submit" value="打卡"></td>
+                </tr>
+            </table>
+        </center>
+    </form>
+</center>
+</body>
+</html>

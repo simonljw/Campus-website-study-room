@@ -1,0 +1,63 @@
+{% extends 'myapp/admin_base.html' %}
+{% block title %}
+<title>自习室信息</title>
+    <style type="text/css">
+        table {
+            border-collapse: collapse;
+            margin: 0 auto;
+            text-align: center;
+        }
+       table td, table th
+        {
+            width: 120px;
+            border: 1px solid #cad9ea;
+            color: #666;
+            height: 35px;
+        }
+        table thead th
+        {
+            background-color: #CCE8EB;
+            width: 100px;
+        }
+        table tr:nth-child(odd)
+        {
+            background: #fff;
+        }
+        table tr:nth-child(even)
+        {
+            background: #F5FAFA;
+        }
+       </style>
+{% endblock %}
+{% block content %}
+    <center>
+    <a href="{%url 'admi_adddat' %}" style="display:block;width:118px;height:50px;text-decoration:none;background-color: darkmagenta;color:white;text-align:center;line-height: 50px;">添加自习室信息</a>
+        <table border="1">
+            <thead>
+             <tr>
+                 <td>序号</td>
+                 <td>自习室名</td>
+                 <td>自习室状态</td>
+                 <td>自习室容量</td>
+                 <td>自习开放时间</td>
+                 <td>自习结束时间</td>
+                 <td colspan="2">操作</td>
+             </tr>
+            </thead>
+        <tbody>
+        {% for port in shujus %}
+            <tr>
+                <td>{{ port.id }}</td>
+                <td>{{ port.room_id }}</td>
+                <td>{{ port.room_statu }}</td>
+                <td>{{ port.allow_num }}</td>
+                <td>{{ port.open_starttime }}</td>
+                <td>{{ port.open_endtime }}</td>
+                <td><a href="{% url 'admi_editdata' port.id %}" style="text-decoration:none;background-color: purple;color:white;display:block;width:120px;height:50px;text-align:center;line-height: 50px;">编辑</a></td>
+                <td><a href="{% url 'admi_delet' port.id %}" onclick="return confirm('确定要删除嘛？')" style="text-decoration:none;background-color: purple;color:white;display:block;width:120px;height:50px;text-align:center;line-height: 50px;">删除</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    </center>
+{% endblock %}

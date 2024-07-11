@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册页面</title>
+     <style>
+        * {
+              margin: 0;
+              padding: 0;
+          }
+        html {
+              height: 100%;
+              width: 100%;
+              overflow: hidden;
+              margin: 0;
+              padding: 0;
+              background: url(../../static/images/login1.jpg) no-repeat 0px 0px;background-repeat: no-repeat;
+              background-size: 100% 100%;
+              -moz-background-size: 100% 100%;
+         }
+        body {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              height: 100%;
+        }
+        #loginDiv {
+             width: 37%;
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             height: 650px;
+             background-color: rgba(75, 81, 95, 0.3);
+             box-shadow: 7px 7px 17px rgba(52, 56, 66, 0.5);
+             border-radius: 5px;
+        }
+        p, .sexDiv {
+               margin-top: 10px;
+               margin-left: 20px;
+              color: azure;
+          }
+        .sexDiv>input {
+              width: 30px;
+              height: 17px;
+          }
+        input{
+              margin-left: 15px;
+              border-radius: 5px;
+              border-style: hidden;
+              height: 30px;
+              width: 140px;
+              background-color: rgba(216, 191, 216, 0.5);
+              outline: none;
+              color: #f0edf3;
+              padding-left: 10px;
+          }
+          .button {
+              border-color: cornsilk;
+              background-color: rgba(100, 149, 237, .7);
+              color: aliceblue;
+              border-style: hidden;
+              border-radius: 5px;
+              width: 100px;
+              height: 31px;
+              font-size: 16px;
+          }
+    </style>
+</head>
+<body style="background: #ffffff url(../../static/images/login1.jpg);background-size:100% 100%;background-repeat: no-repeat;">
+<div  id="loginDiv">
+    <form action="{% url 'zhuceing' %}" method="post">
+        {% csrf_token %}
+
+            <h1 style="text-align: center;color: aliceblue;">注册</h1><br>
+            <p>用户名：&nbsp;&nbsp;&nbsp;&nbsp;<input id="username" type="text" name="name" placeholder="用户名" /></p>
+            <p>密码：            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="password" type="password" name="password" id="pw1" placeholder="密码"/> </p>
+            <p>确认密码：<input id="surepassword" type="password" name="repassword" id="pw2" placeholder="确认密码"/></p>
+            <div class="sexDiv">
+                 用户性别：
+                <input class="userSex" type="radio"  name="sex" value="男" />男
+                <input class="userSex" type="radio"  name="sex" value="女" />女
+            </div>
+            <p>城市：&nbsp;&nbsp;<input type="text" name="city" placeholder="城市"></p>
+             <p>电话号码：<input type="tel" name="tel" placeholder="手机号码"/></p><br>
+                <input type="submit" class="button" value="注册">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="reset" class="button" value="重置">
+            </p>
+    </form>
+
+
+</div>
+
+
+</body>
+</html>

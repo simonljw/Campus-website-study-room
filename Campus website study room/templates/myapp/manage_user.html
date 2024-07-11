@@ -1,0 +1,79 @@
+{% extends 'myapp/admin_base.html' %}
+
+{% block title %}
+   <title>管理用户</title>
+{% endblock %}
+
+{% block content %}
+
+
+    <style type="text/css">
+        table {
+            border-collapse: collapse;
+            margin: 0 auto;
+            text-align: center;
+        }
+       table td, table th
+        {
+            width: 120px;
+            border: 1px solid #cad9ea;
+            color: #666;
+            height: 35px;
+        }
+        table thead th
+        {
+            background-color: #CCE8EB;
+            width: 100px;
+        }
+        table tr:nth-child(odd)
+        {
+            background: #fff;
+        }
+        table tr:nth-child(even)
+        {
+            background: #F5FAFA;
+        }
+    .a {
+        font-family: "microsoft sans serif", serif;
+    }
+    </style>
+
+
+<tbody>
+
+
+<center>
+
+  <table border="1">
+      <thead>
+      <tr>
+          <td>id</td>
+          <td>用户名称</td>
+          <td>性别</td>
+          <td>电话号码</td>
+          <td>所在城市</td>
+          <td>删除操作</td>
+      </tr>
+      </thead>
+      <tbody>
+      {% for foo in user %}
+          <tr>
+          <td>{{ foo.id }}</td>
+          <td>{{ foo.name }}</td>
+          <td>{{ foo.sex }}</td>
+          <td>{{ foo.tel }}</td>
+          <td>{{ foo.city }}</td>
+          <td><a href="{% url 'user_delet' foo.id %}" onclick="return confirm('确定要删除嘛？')" style="text-decoration:none;background-color: purple;color:white;display:block;width:120px;height:50px;text-align:center;line-height: 50px;">删除用户</a></td>
+          </tr>
+
+      {% endfor %}
+
+      </tbody>
+
+  </table>
+</center>
+
+
+
+
+{% endblock %}

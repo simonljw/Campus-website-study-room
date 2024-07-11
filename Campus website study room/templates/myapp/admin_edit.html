@@ -1,0 +1,84 @@
+{% extends 'myapp/admin_base.html' %}
+{% block title %}
+<title>编辑自习信息</title>
+{% endblock %}
+
+{% block content %}
+    <nav style="width: 750px;
+	height: 650px;
+	border: 5px;
+	border-radius: 5px;
+	background-color:#fff;
+	justify-content: center;
+	display: flex;
+	box-shadow: 0 0 3px 1px rgba(0,0,0,.7);
+	background-color: #C4C4C4;
+	margin-top: 20px;
+    position: absolute;
+    margin-left: 450px">
+<center>
+<form action="{% url 'admin_editdata' id %}" method="post">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td style="font-size: 20px;font-family: Arial, Helvetica, sans-serif">自习室名称:</td>
+            <td>
+                <input style="display: flex;width: 320px;height: 40px;border-radius: 5px;border-top-color: #1F4764;" type="text" name="room_id" value={{ room_id }} />
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size: 20px;font-family: Arial, Helvetica, sans-serif">剩余人数:</td>
+            <td>
+                <input style="display: flex;width: 320px;height: 40px;border-radius: 5px;border-top-color: #1F4764;" type="text" name="allow_num" value={{ allow_num }} />
+            </td>
+        </tr>        <tr>
+            <td style="font-size: 20px;font-family: Arial, Helvetica, sans-serif">自习状态:</td>
+            <td>
+                <input style="display: flex;width: 320px;height: 40px;border-radius: 5px;border-top-color: #1F4764;" type="text" name="statu" value={{ statu }} />
+            </td>
+        </tr>        <tr>
+            <td style="font-size: 20px;font-family: Arial, Helvetica, sans-serif">自习名:</td>
+            <td>
+                <input style="display: flex;width: 320px;height: 40px;border-radius: 5px;border-top-color: #1F4764;" type="text" name="meet_name" value="{{ meet_name }}" />
+            </td>
+        </tr>        <tr>
+            <td style="font-size: 20px;font-family: Arial, Helvetica, sans-serif">操作:</td>
+            <td>
+                <input style="display: flex;width: 320px;height: 40px;border-radius: 5px;border-top-color: #1F4764;" type="text" name="operation" value={{ operation }} />
+            </td>
+        </tr>        <tr>
+            <td style="font-size: 20px;font-family: Arial, Helvetica, sans-serif">发起人:</td>
+            <td>
+                <input style="display: flex;width: 320px;height: 40px;border-radius: 5px;border-top-color: #1F4764;" type="text" name="president" value={{ president }} />
+            </td>
+        </tr>        <tr>
+            <td style="font-size: 20px;font-family: Arial, Helvetica, sans-serif">自习开始时间:</td>
+            <td>
+                <input style="display: flex;width: 320px;height: 40px;border-radius: 5px;border-top-color: #1F4764;" type="datetime-local" name="start_time" value={{ start_time }} />
+            </td>
+        </tr>        <tr>
+            <td style="font-size: 20px;font-family: Arial, Helvetica, sans-serif">自习结束时间:</td>
+            <td>
+                <input style="display: flex;width: 320px;height: 40px;border-radius: 5px;border-top-color: #1F4764;" type="datetime-local" name="end_time" value={{ end_time }} />
+            </td></tr>        <tr>
+            <td>预约自习人的名字:</td>
+            <td style="font-size: 20px;font-family: Arial, Helvetica, sans-serif">
+                <input style="display: flex;width: 320px;height: 40px;border-radius: 5px;border-top-color: #1F4764;" type="text" name="sub_name" value={{ sub_name }} />
+            </td></tr>        <tr>
+            <td>自习种类:</td>
+            <td style="font-size: 20px;font-family: Arial, Helvetica, sans-serif">
+                <input style="display: flex;width: 320px;height: 40px;border-radius: 5px;border-top-color: #1F4764;" type="text" name="meet_kind" value={{ meet_kind }} />
+            </td>
+        </tr>
+    </table>
+    <br/>
+<nav style="display: flex;flex-direction: row;margin-left:80px;margin-top: 20px;" >
+    <input style="display: flex;width: 100px;height: 45px;border-radius: 10px; text-align: center; vertical-align:center;background-color: white;color: black;font-weight: bolder;" type="submit" value="修改自习信息"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <nav style="display: flex;margin-left: 80px;">
+        <input style="display: flex;width: 100px;height: 50px;border-radius: 10px;text-align:center;vertical-align:center;color:white;color: black;font-weight: bolder;" type="reset" value="重新开始修改"/>&nbsp;
+             </nav>
+     </nav>
+    </form>
+</center>
+    </nav>
+{% endblock %}

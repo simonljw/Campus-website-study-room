@@ -1,0 +1,91 @@
+{% extends 'myapp/base.html' %}
+{% block title %}
+<title>线上自习列表</title>
+
+    <style type="text/css">
+        table
+        {
+            border-collapse: collapse;
+            margin: 0 auto;
+            text-align: center;
+        }
+        table td, table th
+        {
+            border: 1px solid #cad9ea;
+            color: #666;
+            height: 30px;
+        }
+        table thead th
+        {
+            background-color: #CCE8EB;
+            width: 100px;
+        }
+        table tr:nth-child(odd)
+        {
+            background: #fff;
+        }
+        table tr:nth-child(even)
+        {
+            background: #F5FAFA;
+        }
+		.a {
+			font-family: "microsoft sans serif";
+		}
+    </style>
+
+{% endblock %}
+
+{% block content %}
+<center>
+    搜索自习号 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <br/><br/>
+    <form action="{% url 'findpage' name %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="find1"/>&nbsp;&nbsp;
+        <input type="submit" name="find" value="参加自习"/>
+    </form>
+<br/><br/><br/>
+<a>
+    自习类型: &nbsp;&nbsp;
+    <select>
+        <option selected="selected" disabled="disabled"  style='display: none' value=''></option>
+        <option value="演讲会">演讲会</option>
+        <option value="例会">例会</option>
+        <option value="理科类">理科类</option>
+        <option value="艺术类">艺术类</option>
+    </select>
+</a>
+<br/><br/><br/>
+<a>
+    <h3 class="a"></h3>线上自习列表 <br/><br/>
+    <table border="1">
+        <thead>
+        <tr>
+            <td>自习号</td>
+            <td>自习名称</td>
+            <td>自习发起人</td>
+            <td>自习类型</td>
+            <td>自习开始时间</td>
+            <td>自习结束时间</td>
+            <td>自习人数</td>
+            <td>操作</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for port in xianshangliebiao %}
+        <tr>
+        <td>{{ port.idm }}</td>
+        <td>{{ port.meet_name }}</td>
+        <td>{{ port.president }}</td>
+        <td>{{ port.meet_kind }}</td>
+        <td>{{ port.start_time }}</td>
+        <td>{{ port.end_time }}</td>
+        <td>{{ port.allow_num }}</td>
+        <td><a href="{% url 'operation' port.id name %}">加入</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</a>
+</center>
+{% endblock %}

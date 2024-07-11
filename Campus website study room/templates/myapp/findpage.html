@@ -1,0 +1,67 @@
+{% extends 'myapp/base.html' %}
+{% block title %}
+<title>查询自习号</title>
+    <style type="text/css">
+        table
+        {
+            border-collapse: collapse;
+            margin: 0 auto;
+            text-align: center;
+        }
+        table td, table th
+        {
+            border: 1px solid #cad9ea;
+            color: #666;
+            height: 30px;
+        }
+        table thead th
+        {
+            background-color: #CCE8EB;
+            width: 100px;
+        }
+        table tr:nth-child(odd)
+        {
+            background: #fff;
+        }
+        table tr:nth-child(even)
+        {
+            background: #F5FAFA;
+        }
+		.a {
+			font-family: "microsoft sans serif";
+		}
+    </style>
+{% endblock %}
+
+{% block content %}
+<center>
+<table border="1">
+    <thead>
+    <tr>
+        <td>自习号</td>
+        <td>自习名称</td>
+        <td>自习发起人</td>
+        <td>自习类型</td>
+        <td>自习开始时间</td>
+        <td>自习结束时间</td>
+        <td>自习人数</td>
+        <td>操作</td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for port in xianshangliebiaos %}
+        <tr>
+        <td>{{ port.idm }}</td>
+        <td>{{ port.meet_name }}</td>
+        <td>{{ port.president }}</td>
+        <td>{{ port.meet_kind }}</td>
+        <td>{{ port.start_time }}</td>
+        <td>{{ port.end_time }}</td>
+        <td>{{ port.allow_num }}</td>
+        <td><a href="{% url 'info' port.id name %}">加入</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</center>
+{% endblock %}
